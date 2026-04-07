@@ -1,0 +1,49 @@
+import React from 'react';
+import logo from '../../assets/images/logo.png'
+import { FaGithub } from 'react-icons/fa';
+import { NavLink } from 'react-router';
+
+const Navbar = () => {
+    return (
+        <div className="max-w-11/12">
+            <div className="navbar ">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        </div>
+                        <ul
+                            tabIndex="-1"
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li><NavLink to={'/'}>Home</NavLink></li>
+                            <li><NavLink to={'/apps'}>APPs</NavLink></li>
+                            <li><NavLink to={'/inistallation'}>Installation</NavLink></li>
+                        </ul>
+                    </div>
+                    <div className=" flex items-center gap-2">
+                        <img src={logo} className='w-10' alt="" />
+                        <span className=' bg-linear-to-bl from-[#632EE3] to-[#9F62F2] bg-clip-text'>
+
+                            <h4 className='font-bold text-transparent'>HERO.IO</h4>
+                        </span>
+                    </div>
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        <li className={`bg-linear-to-bl from-[#632EE3] to-[#9F62F2] bg-clip-text `}><NavLink className={({ isActive }) => isActive && 'text-transparent font-bold underline'} to={'/'}>Home</NavLink></li>
+                        <li className='bg-linear-to-bl from-[#632EE3] to-[#9F62F2] bg-clip-text'><NavLink className={({ isActive }) => isActive && 'text-transparent font-bold underline'} to={'/apps'}>Apps</NavLink></li>
+                        <li className='bg-linear-to-bl from-[#632EE3] to-[#9F62F2] bg-clip-text'><NavLink className={({ isActive }) => isActive && 'text-transparent font-bold underline'} to={'/inistallation'}>Installation</NavLink></li>
+                    </ul>
+                </div>
+                <div className="navbar-end">
+                    <a className="btn bg-linear-to-bl to-[#632EE3] from-[#9F62F2]">
+                        <FaGithub className='text-white text-lg' />
+                        <span className='text-white font-bold'>Contribute</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
