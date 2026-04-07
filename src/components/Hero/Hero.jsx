@@ -17,11 +17,11 @@ const Hero = () => {
                 <p className='text-[#627382] text-center my-4 max-w-[75%] mx-auto'>At HERO.IO , we craft innovative apps designed to make everyday life simpler, smarter, and more exciting. Our goal is to turn your ideas into digital experiences that truly make an impact.</p>
 
                 <div className="flex justify-center gap-4 pb-5">
-                    <button className='btn bg-transparent text-black border-[#e5e5e5] font-bold'>
+                    <button className='btn bg-transparent text-black border-[#e5e5e5] font-bold  hover:scale-110 duration-900'>
                         <img src={playStor} alt="" />
                         Google Play</button>
 
-                    <button className='btn bg-transparent text-black border-[#e5e5e5] font-bold'>
+                    <button className='btn bg-transparent text-black border-[#e5e5e5] font-bold hover:scale-110 duration-900'>
                         <img src={Stor} alt="" />
                         App Store</button>
                 </div>
