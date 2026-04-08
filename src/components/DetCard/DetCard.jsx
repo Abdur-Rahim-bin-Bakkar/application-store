@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router';
 import rating from '../../assets/images/icon-ratings.png'
 import review from '../../assets/images/icon-review.png'
 import download from '../../assets/images/icon-downloads.png'
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const data = fetch('/data.json').then(res => res.json())
 
@@ -56,11 +56,12 @@ const DetCard = () => {
             <div className="divider"></div>
             <div className="">
                 <h1 className='text-2xl font-bold'>Ratings</h1>
-                <ResponsiveContainer  width={'100%'} height={300}>
-                    <BarChart width={500} height={500}  data={expectedData.ratings}>
-                        <XAxis dataKey={"count"}></XAxis>
-                        <YAxis dataKey={"name"}></YAxis>
-                        <Bar dataKey={"count"}></Bar>
+                <ResponsiveContainer   width={'100%'} height={300}>
+                    <BarChart layout='vertical'  width={500} height={500}  data={expectedData.ratings}>
+                        <XAxis dataKey="count" type='number'></XAxis>
+                        <YAxis dataKey="name" type='category'></YAxis>
+                        <Bar dataKey="count" fill="#FF8811" ></Bar>
+                        <Tooltip></Tooltip>
                     </BarChart>
                 </ResponsiveContainer>
             </div>
