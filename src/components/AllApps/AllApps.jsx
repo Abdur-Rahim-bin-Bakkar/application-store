@@ -1,7 +1,9 @@
 import React, { use } from 'react';
 import AppCard from '../AppCard/AppCard';
-const data = fetch('/data.json').then(res => res.json())
-const AllApps = () => {
+// const data = fetch('/data.json').then(res => res.json())
+const AllApps = ({data}) => {
+    console.log(data)
+
     const appsData = use(data)
     return (
         <div className='bg-[#f5f5f5] pt-13 pb-10'>

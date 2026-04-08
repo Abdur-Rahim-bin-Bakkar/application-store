@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router';
 import MainLayout from '../Layouts/MainLayout';
 import HomePage from '../Pages/HomePage/HomePage';
 import AllApps from '../components/AllApps/AllApps';
-
+import { HashLoader } from 'react-spinners';
+import Spinner from '../components/Spinner/Spinner';
+const data = fetch('/data.json').then(res => res.json())
 export const router = createBrowserRouter([
     {
         path:"/",
@@ -15,7 +17,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'apps',
-                Component: AllApps
+                element: <Suspense fallback={<Spinner/>}>
+                    <AllApps data={data}></AllApps>
+                </Suspense>
             }
         ]
     }
