@@ -6,6 +6,7 @@ import AllApps from '../components/AllApps/AllApps';
 import { HashLoader } from 'react-spinners';
 import Spinner from '../components/Spinner/Spinner';
 import DetCard from '../components/DetCard/DetCard';
+import InistallApps from '../components/InistallApps/InistallApps';
 const data = fetch('/data.json').then(res => res.json())
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
                 loader: ({params})=>{
                     return params.id
                 }
+            },
+            {
+                path: 'inistallation',
+                Component: InistallApps
             }
         ]
     }

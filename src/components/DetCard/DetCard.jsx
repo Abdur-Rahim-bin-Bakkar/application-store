@@ -1,10 +1,12 @@
-import React, { use } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
 import rating from '../../assets/images/icon-ratings.png'
 import review from '../../assets/images/icon-review.png'
 import download from '../../assets/images/icon-downloads.png'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { InistallContext } from '../ContextComponet/ContextComponet';
+
 
 const data = fetch('/data.json').then(res => res.json())
 
@@ -13,10 +15,18 @@ const DetCard = () => {
     const useData = use(data)
 
     const expectedData = useData.find(exData => exData.id == clickId)
-    console.log(expectedData)
+
+    const { insitalls, setInistalls } = useContext(InistallContext)
+    const [ins, setIns] = useState(false)
+    console.log(insitalls)
+    // console.log(expectedData)
     // console.log(useData)
     // const barcharts = expectedData.ratings
     // console.log(barcharts)
+    const handelInistall = () => {
+        setInistalls([...insitalls, expectedData])
+        setIns(true)
+    }
     return (
         <div className='bg-[#f5f5f5] pt-13 pb-10'>
             <div className="max-w-11/12 mx-auto">
@@ -35,39 +45,39 @@ const DetCard = () => {
                         <div className="grid grid-cols-3 gap-3">
                             <div className="space-y-2">
                                 <img src={download} alt="" />
-                                <p>Downloads</p> 
+                                <p>Downloads</p>
                                 <h2 className='text-2xl font-bold'>{expectedData.downloads}</h2>
                             </div>
                             <div className="space-y-2">
                                 <img src={rating} alt="" />
-                                <p>Average Ratings</p> 
+                                <p>Average Ratings</p>
                                 <h2 className='text-2xl font-bold'>{expectedData.ratingAvg}</h2>
                             </div>
                             <div className="space-y-2">
                                 <img src={review} alt="" />
-                                <p>Total Reviews</p> 
+                                <p>Total Reviews</p>
                                 <h2 className='text-2xl font-bold'>{expectedData.reviews}</h2>
                             </div>
                         </div>
-                        <button className="btn bg-[#00D390] text-white font-semibold max-w-50">Install Now ({expectedData.size} MB)</button>
+                        <button disabled={ins} onClick={handelInistall} className="btn bg-[#00D390] text-white font-semibold max-w-50">{!ins ? `Install Now (${expectedData.size} MB)` : "Already inistalled"}</button>
 
                     </div>
                 </div>
-            <div className="divider"></div>
-            <div className="">
-                <h1 className='text-2xl font-bold'>Ratings</h1>
-                <ResponsiveContainer   width={'100%'} height={300}>
-                    <BarChart layout='vertical'  width={500} height={500}  data={expectedData.ratings}>
-                        <XAxis dataKey="count" type='number'></XAxis>
-                        <YAxis dataKey="name" type='category'></YAxis>
-                        <Bar dataKey="count" fill="#FF8811" ></Bar>
-                        <Tooltip></Tooltip>
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
-            <div className="divider"></div>
-            <h1 className='text-2xl font-bold'>Description</h1>
-            <p className='text-[#627382] mt-3'>{expectedData.description}</p>
+                <div className="divider"></div>
+                <div className="">
+                    <h1 className='text-2xl font-bold'>Ratings</h1>
+                    <ResponsiveContainer width={'100%'} height={300}>
+                        <BarChart layout='vertical' width={500} height={500} data={expectedData.ratings}>
+                            <XAxis dataKey="count" type='number'></XAxis>
+                            <YAxis dataKey="name" type='category'></YAxis>
+                            <Bar dataKey="count" fill="#FF8811" ></Bar>
+                            <Tooltip></Tooltip>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="divider"></div>
+                <h1 className='text-2xl font-bold'>Description</h1>
+                <p className='text-[#627382] mt-3'>{expectedData.description}</p>
             </div>
         </div>
     );
