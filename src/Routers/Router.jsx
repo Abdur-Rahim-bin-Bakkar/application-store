@@ -5,6 +5,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import AllApps from '../components/AllApps/AllApps';
 import { HashLoader } from 'react-spinners';
 import Spinner from '../components/Spinner/Spinner';
+import DetCard from '../components/DetCard/DetCard';
 const data = fetch('/data.json').then(res => res.json())
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,13 @@ export const router = createBrowserRouter([
                 element: <Suspense fallback={<Spinner/>}>
                     <AllApps data={data}></AllApps>
                 </Suspense>
+            },
+            {
+                path: 'ditelles/:id',
+                Component : DetCard ,
+                loader: ({params})=>{
+                    return params.id
+                }
             }
         ]
     }

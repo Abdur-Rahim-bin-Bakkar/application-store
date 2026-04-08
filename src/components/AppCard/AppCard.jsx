@@ -1,10 +1,15 @@
 import React from 'react';
 import { FaCloudDownloadAlt, FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router';
 
 const AppCard = ({app}) => {
     // console.log(app)
+    const naavigate = useNavigate()
+    const handelDet = ( )=>{
+        naavigate(`/ditelles/${app.id}`)
+    }
     return (
-        <div className='card p-3 rounded-2xl bg-white'>
+        <div onClick={handelDet} className='card p-3 rounded-2xl bg-white'>
             <img src={app.image} className='w-full rounded-lg max-h-80 object-contain' alt="" />
             <div className="card-body">
                 <h1 className='text-lg font-bold'>{app.title}</h1>
