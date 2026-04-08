@@ -6,6 +6,7 @@ import review from '../../assets/images/icon-review.png'
 import download from '../../assets/images/icon-downloads.png'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { InistallContext } from '../ContextComponet/ContextComponet';
+import { toast } from 'react-toastify';
 
 
 const data = fetch('/data.json').then(res => res.json())
@@ -26,6 +27,7 @@ const DetCard = () => {
     const handelInistall = () => {
         setInistalls([...insitalls, expectedData])
         setIns(true)
+        toast.success(`inistall ${expectedData.title}`)
     }
     return (
         <div className='bg-[#f5f5f5] pt-13 pb-10'>

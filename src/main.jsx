@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { RouterProvider } from 'react-router'
 import { router } from './Routers/Router.jsx'
 import ContextComponet from './components/ContextComponet/ContextComponet.jsx'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -12,5 +13,6 @@ createRoot(document.getElementById('root')).render(
       <RouterProvider router={router}>
       </RouterProvider>
     </ContextComponet>
+    <ToastContainer/>
   </StrictMode>,
 )
